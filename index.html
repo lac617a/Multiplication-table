@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>Multiplication table</title>
+</head>
+<body>
+  <div class="container">
+    <div class="form-group text-center mt-2">
+      <label > Escribe la cantida de tablas que quieras aprender:
+        <input class="form-control form-control-sm" type="text" id="input" value="5">
+      </label>
+    </div>
+    <div id="tables" class="row"></div>
+  </div>
+  <script>
+    const tables = document.getElementById('tables')
+    const $input = document.getElementById('input').value
+
+    document.addEventListener('keydown',(e)=>{
+      const $input = document.getElementById('input').value
+      if (e.key === 'Enter') {
+        load($input)
+      }
+    })
+    
+    const formtTables = (finalStr) => {
+      return `<span class="col-2  bg-dark border m-3 rounded text-center text-light p-2">${finalStr}</span>`
+    }
+    function table (v) {
+      /*
+      Multiplication
+
+      Simple funcion que cumple una multiplicacion para ciertas tablas.
+      */
+      let to_s = 'Table of '+v+'<br/>'
+      for (let n=1; n<=10; n++) {
+        to_s += `${v} * ${n} = ${v*n}<br/>`
+      }
+      return formtTables(to_s)
+    }
+
+    const load = (input) => {
+      let max = input
+      let result = ''
+      for (let i=1; i<=max;i++){
+        result += table(i)
+      }
+      tables.innerHTML = result
+    }
+    load($input)
+  </script>
+</body>
+</html>
